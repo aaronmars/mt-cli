@@ -1,0 +1,31 @@
+{
+  "name": "mt-cli",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "fetch-cookie": "^0.1.4",
+    "mindtouch-http.js": "git+https://github.com/mindtouch/mindtouch-http.js.git#master",
+    "mindtouch-martian": "git+https://github.com/mindtouch/martian.git#master",
+    "mz": "^2.5.0",
+    "node-fetch": "^1.6.3",
+    "progress-stream": "^1.2.0",
+    "tough-cookie": "^2.3.2",
+    "vorpal": "^1.11.4",
+    "yargs": "^6.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "eslint": "^3.10.0",
+    "eslint-config-mindtouch": "^1.0.0"
+  }
+}

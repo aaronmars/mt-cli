@@ -1,0 +1,16 @@
+{
+  "extends": "mindtouch",
+  "globals": {
+    "fetch": false,
+    "Headers": false,
+    "Request": false
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  }
+}
