@@ -9,7 +9,9 @@ function _printObject(command, obj, indent) {
         if(val instanceof Date) {
             val = val.toString();
         }
-        if(typeof val === 'object') {
+        if(Array.isArray(val) && val.length === 0) {
+            command.log(`${' '.repeat(indent)}${chalk.red(key)}: ${chalk.cyan('[]')}`);
+        } else if(typeof val === 'object') {
             command.log(`${' '.repeat(indent)}${chalk.red(key)}:`);
             _printObject(command, val, indent + 4);
         } else {

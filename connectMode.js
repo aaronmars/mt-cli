@@ -1,7 +1,6 @@
 const connectMode = (vorpal, connection, cookieJar) => {
     let mode = 'host';
     function _getPrompt() {
-        debugger;
         const cmd = vorpal.activeCommand;
         if(connection.host) {
             cmd.log(`HOST: ${connection.host}`);

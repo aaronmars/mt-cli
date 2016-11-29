@@ -1,7 +1,7 @@
 require('babel-register')({
     ignore: function(filename) {
         const isNodeModule = (/node_modules/).test(filename);
-        const isMtLib = (/mindtouch-http\.js/).test(filename) || (/mindtouch-martian/).test(filename);
+        const isMtLib = (/mindtouch-http/).test(filename) || (/mindtouch-martian/).test(filename);
         return isNodeModule && !isMtLib;
     },
     sourceMaps: true
