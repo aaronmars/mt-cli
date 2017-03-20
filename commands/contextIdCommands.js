@@ -1,21 +1,21 @@
-const ContextIdManager = require('mindtouch-martian/contextId').ContextIdManager;
-const ContextDefinition = require('mindtouch-martian/contextId').ContextDefinition;
-const ContextMap = require('mindtouch-martian/contextId').ContextMap;
+const ContextIdManager = require('mindtouch-martian').ContextIdManager;
+const ContextDefinition = require('mindtouch-martian').ContextDefinition;
+const ContextMap = require('mindtouch-martian').ContextMap;
 
-const contextIdCommands = (vorpal, printJsObj) => {
+const contextIdCommands = (vorpal, settings, printJsObj) => {
     vorpal.command('cid definitions', 'Get all of the site\'s Context Id Definitions.').action(function() {
-        const cm = new ContextIdManager();
+        const cm = new ContextIdManager(settings);
         return cm.getDefinitions().then((resp) => printJsObj(this, resp));
     });
     vorpal.command('cid add <id> [description]', 'Add a new Context ID Definition.').action(function(args) {
-        const cm = new ContextIdManager();
+        const cm = new ContextIdManager(settings);
         if(args.description) {
             return cm.addDefinition(args.id, args.description);
         }
         return cm.addDefinition(args.id);
     });
     vorpal.command('cid maps', 'Get all of the site\'s Context Id Definitions.').action(function() {
-        const cm = new ContextIdManager();
+        const cm = new ContextIdManager(settings);
         return cm.getMaps().then((resp) => printJsObj(this, resp));
     });
     vorpal
@@ -23,7 +23,7 @@ const contextIdCommands = (vorpal, printJsObj) => {
         .option('-d, --delete', 'Delete the definition')
         .option('-u, --update <description>', 'Update the Context ID Description.')
         .action(function(args) {
-            const cid = new ContextDefinition(args.id);
+            const cid = new ContextDefinition(args.id, settings);
             if(args.options.delete) {
                 return cid.delete();
             } else if('update' in args.options) {
@@ -36,7 +36,7 @@ const contextIdCommands = (vorpal, printJsObj) => {
         .option('-d, --delete', 'Remove the mapping.')
         .option('-p, --pageid <pageid>', 'Set the page ID for a mapping.')
         .action(function(args) {
-            const map = new ContextMap(args.language, args.id);
+            const map = new ContextMap(args.language, args.id, settings);
             if(args.options.delete) {
                 return map.remove();
             } else if('pageid' in args.options) {

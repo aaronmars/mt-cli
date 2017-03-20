@@ -1,11 +1,11 @@
 const fs = require('mz/fs');
 const path = require('path');
-const Page = require('mindtouch-martian/page').Page;
+const Page = require('mindtouch-martian').Page;
 
-function makePage(id = 'home') {
-    return new Page(id);
-}
-const pageCommands = (vorpal, printJsObj) => {
+const pageCommands = (vorpal, settings, printJsObj) => {
+    function makePage(id = 'home') {
+        return new Page(id, settings);
+    }
     vorpal.command('page info', 'Gets information about a page.')
         .option('-i, --page-id [id]', 'The ID of the page.')
         .option('-f, --full', 'Get the full info.')

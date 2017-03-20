@@ -1,8 +1,8 @@
 const fs = require('mz/fs');
 const path = require('path');
-const File = require('mindtouch-martian/file').File;
+const File = require('mindtouch-martian').File;
 
-const fileCommands = (vorpal, printJsObj) => {
+const fileCommands = (vorpal, settings, printJsObj) => {
     vorpal.command('file revision', 'Upload a new file revision for the specified file.')
         .option('-i, --file-id <id>', 'The ID of the file to revise.')
         .option('-f, --file <file>', 'The file to upload as the new revision.')
@@ -10,7 +10,7 @@ const fileCommands = (vorpal, printJsObj) => {
         .action((args) => {
             return fs.stat(args.options.file).then((stats) => {
                 const fileStream = fs.createReadStream(args.options.file);
-                const fileApi = new File(args.options['file-id']);
+                const fileApi = new File(args.options['file-id'], settings);
                 const fileInfo = { name: path.basename(args.options.file), size: stats.size };
                 if(args.options.type) {
                     fileInfo.type = args.options.type;
